@@ -6,6 +6,6 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
 
 
 ## Features Checklist
-- [] Speedometer
-- [] Current location display
-- [] Import and display route as GPX file
+- [ ] Speedometer
+- [ ] Current location display
+- [ ] Import and display route as GPX file
