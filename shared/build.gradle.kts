@@ -1,13 +1,15 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-25"
 }
 
 kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
@@ -22,31 +24,31 @@ kotlin {
             isStatic = true
         }
     }
-    val coroutinesVersion = "1.7.3"
-    val ktorVersion = "2.3.7"
-    val sqlDelightVersion = "1.5.5"
-    val dateTimeVersion = "0.4.1"
     sourceSets {
-
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+        }
         commonMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-            implementation("io.ktor:ktor-client-core:$ktorVersion")
-            implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-            implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
-            implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+            implementation(libs.coroutines.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.runtime)
+            implementation(libs.kotlinx.datetime)
+            api(libs.rickclephas.kmm.viewmodel.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
         androidMain.dependencies {
-            implementation("io.ktor:ktor-client-android:$ktorVersion")
-            implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+            implementation(libs.ktor.client.android)
+            implementation(libs.android.driver)
         }
 
         iosMain.dependencies {
-            implementation("io.ktor:ktor-client-darwin:$ktorVersion")
-            implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
+            implementation(libs.ktor.client.darwin)
+            implementation(libs.native.driver)
         }
     }
 }
@@ -56,5 +58,9 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 27
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
