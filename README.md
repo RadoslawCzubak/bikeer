@@ -1,9 +1,13 @@
 # Bikeer - Your Ultimate Cycling Companion
 
+> [!NOTE]  
+> This project was created as part of the participation in the [100commitow.pl](https://100commitow.pl) competition.
+**100commitow.pl** is a coding competition that encourages participants to make at least 100 commits to their GitHub repositories within 100 days, with a minimum of 1 commit per day.
+
+
 ## Overview
 
 Bikeer is a mobile application designed to enhance your cycling experience by providing a comprehensive set of features to track, analyze, and optimize your rides. Whether you're a casual cyclist or a seasoned pro, Bikeer has something to offer for everyone.
-
 
 ## Key Features
 - [ ] **Speedometer**: the main functionality of the application. It is displayed on the main screen. Possible change of units **imperial and metric**.
