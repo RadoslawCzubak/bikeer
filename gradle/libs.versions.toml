@@ -3,6 +3,7 @@ agp = "8.3.0"
 composeBom = "2024.02.01"
 dateTimeVersion = "0.4.1"
 kmmViewmodelCoreVersion = "1.0.0-ALPHA-19"
+koinCore = "3.6.0-wasm-alpha2"
 kotlin = "1.9.22"
 compose = "1.6.2"
 compose-compiler = "1.5.10"
@@ -10,12 +11,17 @@ compose-material3 = "1.2.0"
 androidx-activityCompose = "1.8.2"
 coroutinesCore = "1.7.3"
 ktorVersion = "2.3.7"
+playServicesLocation = "21.1.0"
 sqlDelightVersion = "1.5.5"
+playServicesLocationVersion = "21.2.0"
 
 
 [libraries]
 android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCore" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -31,8 +37,10 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorVer
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVersion" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion" }
 native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelightVersion" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 rickclephas-kmm-viewmodel-core = { module = "com.rickclephas.kmm:kmm-viewmodel-core", version.ref = "kmmViewmodelCoreVersion" }
 runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelightVersion" }
+gms-play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocationVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
