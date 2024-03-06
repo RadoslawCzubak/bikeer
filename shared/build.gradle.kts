@@ -44,6 +44,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.android.driver)
+            implementation(libs.play.services.location)
         }
 
         iosMain.dependencies {
