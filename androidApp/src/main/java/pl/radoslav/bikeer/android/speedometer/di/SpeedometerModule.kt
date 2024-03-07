@@ -9,9 +9,8 @@ import pl.radoslav.bikeer.speedometer.data.LocationRepositoryImpl
 import pl.radoslav.bikeer.speedometer.domain.LocationRepository
 import pl.radoslav.bikeer.speedometer.presentation.SpeedometerViewModel
 
-val speedometerModule = module {
+val androidModule = module {
     viewModelOf(::SpeedometerViewModel)
-    single<LocationRepository> { LocationRepositoryImpl(get()) }
     single { LocationManager(fuseLocationManager = get()) }
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
 }
