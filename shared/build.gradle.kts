@@ -37,6 +37,7 @@ kotlin {
             implementation(libs.runtime)
             implementation(libs.kotlinx.datetime)
             api(libs.rickclephas.kmm.viewmodel.core)
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
