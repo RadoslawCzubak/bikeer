@@ -10,7 +10,7 @@
 Bikeer is a mobile application designed to enhance your cycling experience by providing a comprehensive set of features to track, analyze, and optimize your rides. Whether you're a casual cyclist or a seasoned pro, Bikeer has something to offer for everyone.
 
 ## Key Features
-- [ ] **Speedometer**: the main functionality of the application. It is displayed on the main screen. Possible change of units **imperial and metric**.
+- [ ] **Speedometer**: the main functionality of the application. It is displayed on the main screen. Possible change of units **imperial and metric**. (In progress)
 - [ ] **Map**: Displaying current position on the map, map browsing.
 - [ ] **Ride Tracker**: This feature will calculate ride metrics using GPS data.
     - Ride Time
