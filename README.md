@@ -1,4 +1,4 @@
-# Bikeer - Your Ultimate Cycling Companion
+# Bikeer - Your Ultimate Cycling Companion 🚴‍♂️
 
 > [!NOTE]  
 > This project was created as part of the participation in the [100commitow.pl](https://100commitow.pl) competition.
@@ -24,3 +24,4 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
 - [ ] **Firebase Synchronization**: Possible synchronization of data with the cloud for online data storage, ensuring independence from a specific device.
 - [ ] **Route Saving**: Saving cycling routes for later review and analysis.
 - [ ] **Bike Repair Shops**: The application will provide a list of bike repair stations in the area.
+
