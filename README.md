@@ -16,7 +16,7 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
     - Ride Time
     - Route Taken
     - Distance Covered
-    - Average Speed`
+    - Average Speed
 - [ ] **GPX File Import**: Users can import their route in GPX format and view it on the map.
 - [ ] **Cycling Activity Log**: Adding tracked activities with the ability to manually edit and add new records to keep an approximate record of cycling routes for maintenance purposes.
 - [ ] **Bike Maintenance Log**: Capability to save service events related to the bike, including when, for how much, and what repairs or replacements were done. Additionally, the option to save detailed information.
@@ -25,3 +25,8 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
 - [ ] **Route Saving**: Saving cycling routes for later review and analysis.
 - [ ] **Bike Repair Shops**: The application will provide a list of bike repair stations in the area.
 
+# Native UI in KMM App
+
+One of the powerful aspects of the Kotlin Multiplatform Mobile (KMM) platform is its ability to implement Native UI. This feature allows the KMM developers to utilize the advantages of native UI toolkits while sharing the core logic across iOS and Android.
+
+This application employs Jetpack Compose for Android and SwiftUI for iOS. This design makes the app user-friendly for both iOS and Android users, as it allows them to understand the app's structure and all its unique features with ease.
