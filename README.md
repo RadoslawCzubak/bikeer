@@ -25,7 +25,21 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
 - [ ] **Route Saving**: Saving cycling routes for later review and analysis.
 - [ ] **Bike Repair Shops**: The application will provide a list of bike repair stations in the area.
 
-# Native UI in KMM App
+## Development
+
+### 🛠️ Tech Stack
+
+- Kotlin Multiplatform
+- Kotlin Programming Language
+- Kotlin Coroutines & Flow
+- Jetpack Compose
+- SwiftUI
+- KMMViewModel
+- Ktor Client
+- SQL Delight
+- Koin Dependency Injection Framework
+
+### 🖼️ Native UI in KMM App
 
 One of the powerful aspects of the Kotlin Multiplatform Mobile (KMM) platform is its ability to implement Native UI. This feature allows the KMM developers to utilize the advantages of native UI toolkits while sharing the core logic across iOS and Android.
 
