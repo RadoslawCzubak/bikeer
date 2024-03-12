@@ -3,6 +3,8 @@ package pl.radoslav.bikeer.core.location
 import android.annotation.SuppressLint
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.Priority
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -28,4 +30,7 @@ actual class LocationManager(
                 }
         }
     }
+
+    // TODO: Implement
+    actual fun getSpeed(): Flow<Float> = flowOf(0.0f)
 }

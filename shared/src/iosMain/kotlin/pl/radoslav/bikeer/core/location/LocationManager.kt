@@ -2,9 +2,8 @@ package pl.radoslav.bikeer.core.location
 
 import kotlinx.cinterop.useContents
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOf
 import platform.CoreLocation.CLLocation
-import platform.CoreLocation.CLLocationAccuracy
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
 import platform.CoreLocation.CLRegion
@@ -61,5 +60,7 @@ actual class LocationManager() : NSObject() {
             locationManager.requestLocation()
         }
     }
-}
 
+    // TODO: Implement flow
+    actual fun getSpeed(): Flow<Float> = flowOf(0.0f)
+}
