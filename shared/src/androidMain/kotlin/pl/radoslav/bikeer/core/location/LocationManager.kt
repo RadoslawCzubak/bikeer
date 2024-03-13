@@ -1,9 +1,14 @@
 package pl.radoslav.bikeer.core.location
 
 import android.annotation.SuppressLint
+import android.location.Location
+import android.os.Looper
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.Priority
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -31,6 +36,22 @@ actual class LocationManager(
         }
     }
 
-    // TODO: Implement
-    actual fun getSpeed(): Flow<Float> = flowOf(0.0f)
+    @SuppressLint("MissingPermission")
+    actual fun getSpeed(): Flow<Float> = callbackFlow {
+        trySend(0f)
+        val locationRequest = LocationRequest.Builder(100L)
+            .setPriority(Priority.PRIORITY_BALANCED_POWER_ACCURACY)
+            .build()
+        val locationCallback: (Location) -> Unit = { location: Location ->
+            trySend(location.speed)
+        }
+        fuseLocationManager.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.getMainLooper()
+        )
+        invokeOnClose {
+            fuseLocationManager.removeLocationUpdates(locationCallback)
+        }
+    }
 }
