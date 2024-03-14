@@ -2,6 +2,7 @@ package pl.radoslav.bikeer.core.location
 
 import kotlinx.cinterop.useContents
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOf
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
@@ -62,5 +63,49 @@ actual class LocationManager() : NSObject() {
     }
 
     // TODO: Implement flow
-    actual fun getSpeed(): Flow<Float> = flowOf(0.0f)
+    actual fun getSpeed(): Flow<Float> = callbackFlow {
+        locationManager.delegate = object : NSObject(), CLLocationManagerDelegateProtocol {
+            override fun locationManager(
+                manager: CLLocationManager,
+                didUpdateLocations: List<*>
+            ) {
+                print("Location received")
+                val lastLocation = didUpdateLocations.first() as CLLocation
+                val mappedLocation = lastLocation.coordinate.useContents {
+                    GpsLocation(latitude, longitude, 0.0, 0.0)
+                }
+                print("Location: $mappedLocation")
+                trySend(mappedLocation.speed.toFloat())
+            }
+
+            override fun locationManager(
+                manager: CLLocationManager,
+                didFailWithError: NSError
+            ) {
+                print("Failed to get location")
+            }
+
+            override fun locationManager(
+                manager: CLLocationManager,
+                didChangeAuthorizationStatus: Int
+            ) {
+                print("Authorization status changed")
+            }
+
+            override fun locationManager(
+                manager: CLLocationManager,
+                monitoringDidFailForRegion: CLRegion?,
+                withError: NSError
+            ) {
+                print("Monitoring failed")
+            }
+        }
+
+        locationManager.startUpdatingLocation()
+
+
+        invokeOnClose {
+            locationManager.stopUpdatingLocation()
+        }
+    }
 }
