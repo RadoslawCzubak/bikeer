@@ -38,7 +38,6 @@ actual class LocationManager(
 
     @SuppressLint("MissingPermission")
     actual fun getSpeed(): Flow<Float> = callbackFlow {
-        trySend(0f)
         val locationRequest = LocationRequest.Builder(100L)
             .setPriority(Priority.PRIORITY_BALANCED_POWER_ACCURACY)
             .build()
