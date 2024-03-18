@@ -5,6 +5,6 @@ import pl.radoslav.bikeer.core.location.GpsLocation
 
 interface LocationRepository {
     fun observeLocation(): Flow<GpsLocation>
-
+    fun observeSpeed(): Flow<Float>
     suspend fun getCurrentLocation(): GpsLocation
 }

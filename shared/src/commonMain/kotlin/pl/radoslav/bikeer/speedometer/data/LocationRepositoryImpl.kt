@@ -13,6 +13,8 @@ class LocationRepositoryImpl(
         return flowOf(GpsLocation(0.0, 0.0, 0.0, 0.0))
     }
 
+    override fun observeSpeed(): Flow<Float> = locationManager.getSpeed()
+
     override suspend fun getCurrentLocation(): GpsLocation {
         return locationManager.getCurrentLocation()
     }
