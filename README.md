@@ -44,3 +44,5 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
 One of the powerful aspects of the Kotlin Multiplatform Mobile (KMM) platform is its ability to implement Native UI. This feature allows the KMM developers to utilize the advantages of native UI toolkits while sharing the core logic across iOS and Android.
 
 This application employs Jetpack Compose for Android and SwiftUI for iOS. This design makes the app user-friendly for both iOS and Android users, as it allows them to understand the app's structure and all its unique features with ease.
+
+Figma Design: https://www.figma.com/file/W6L57nfX5561QZ88If20JX/Bikeer?type=design&node-id=0%3A1&mode=design&t=SSzNChLucGpRtCm7-1
