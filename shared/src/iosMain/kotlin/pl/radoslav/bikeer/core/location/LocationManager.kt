@@ -108,4 +108,9 @@ actual class LocationManager() : NSObject() {
             locationManager.stopUpdatingLocation()
         }
     }
+
+    actual fun observeLocation(): Flow<GpsLocation> {
+        TODO("Not yet implemented")
+    }
+
 }

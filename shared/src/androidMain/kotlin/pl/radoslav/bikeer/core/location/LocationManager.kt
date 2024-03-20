@@ -53,4 +53,8 @@ actual class LocationManager(
             fuseLocationManager.removeLocationUpdates(locationCallback)
         }
     }
+
+    actual fun observeLocation(): Flow<GpsLocation> {
+        TODO("Not yet implemented")
+    }
 }

@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 @Suppress("NO_ACTUAL_FOR_EXPECT")
 expect class LocationManager {
     suspend fun getCurrentLocation(): GpsLocation
+    fun observeLocation(): Flow<GpsLocation>
     fun getSpeed(): Flow<Float>
 }
