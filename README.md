@@ -38,6 +38,7 @@ Bikeer is a mobile application designed to enhance your cycling experience by pr
 - Ktor Client
 - SQL Delight
 - Koin Dependency Injection Framework
+- MVI pattern
 
 ### 🖼️ Native UI in KMM App
 
