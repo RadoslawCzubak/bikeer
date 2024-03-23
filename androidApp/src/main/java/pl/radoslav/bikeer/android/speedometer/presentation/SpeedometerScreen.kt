@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
+import pl.radoslav.bikeer.android.core.presentation.speedometer.Gauge
 import pl.radoslav.bikeer.speedometer.presentation.SpeedometerEvent
 import pl.radoslav.bikeer.speedometer.presentation.SpeedometerViewModel
 
@@ -26,12 +27,6 @@ fun SpeedometerScreen(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(
-            text = "Lat: ${state.lat} Lon: ${state.lon}",
-            style = TextStyle(fontSize = 24.sp, color = Color.White)
-        )
-        Button(onClick = { viewModel.onEvent(SpeedometerEvent.CheckLocation) }) {
-            Text(text = "Check location")
-        }
+        Gauge()
     }
 }
