@@ -58,6 +58,8 @@ fun SpeedometerScreenContent(
             value = state.speed,
             minValue = 0f,
             maxValue = 50f,
+            baseColor = Color(0xFF1C1C1E),
+            progressColor = Color(0xFF0094FF),
         )
         Row(
             modifier = Modifier
@@ -151,6 +153,8 @@ fun NavigationItem(
 @Composable
 fun SpeedometerScreenContentPreview() {
     SpeedometerScreenContent(
-        SpeedometerState()
+        SpeedometerState(
+            speed = 18f,
+        )
     )
 }

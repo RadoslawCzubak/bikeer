@@ -39,8 +39,8 @@ fun Gauge(
         val maxSweep = 250f
         val sweep = (value - minValue) / maxValue * maxSweep
         Canvas(modifier = Modifier.matchParentSize()) {
-            val stroke = Stroke(width = this.size.width / 2 * 0.2f, cap = StrokeCap.Round)
-
+            val stroke = Stroke(width = this.size.width / 2 * 0.1f, cap = StrokeCap.Round)
+            drawCircle(baseColor, radius = this.size.width / 2 * 0.85f)
             drawArc(
                 progressColor,
                 145f,
@@ -50,7 +50,6 @@ fun Gauge(
                 size = size * 0.85f,
                 topLeft = Offset(0.15f * size.width / 2, 0.15f * size.height / 2)
             )
-            drawCircle(baseColor, radius = this.size.width / 2 * 0.85f)
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
