@@ -23,8 +23,8 @@ open class SpeedometerViewModel(
                     _state.update { state ->
                         locationRepository.getCurrentLocation().let {
                             state.copy(
-                                lat = it.latitude,
-                                lon = it.longitude,
+                                latitude = it.latitude,
+                                longitude = it.longitude,
                             )
                         }
                     }
