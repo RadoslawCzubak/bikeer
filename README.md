@@ -1,9 +1,9 @@
 # Bikeer - Your Ultimate Cycling Companion 🚴‍♂️
 
+![kotlin-version](https://img.shields.io/badge/kotlin-1.9.22-blue)
 > [!NOTE]  
 > This project was created as part of the participation in the [100commitow.pl](https://100commitow.pl) competition.
 **100commitow.pl** is a coding competition that encourages participants to make at least 100 commits to their GitHub repositories within 100 days, with a minimum of 1 commit per day.
-
 
 ## Overview
 
