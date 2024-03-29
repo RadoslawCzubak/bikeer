@@ -50,6 +50,10 @@ to save detailed information.
 - Koin Dependency Injection Framework
 - MVI pattern
 
+### MVI Architecture 
+TODO: add diagram
+
+
 ### 🖼️ Native UI in KMM App
 
 One of the powerful aspects of the Kotlin Multiplatform Mobile (KMM) platform is its ability to implement Native UI. This feature allows the KMM developers to utilize the advantages of native UI toolkits while sharing the core logic across iOS and Android.
