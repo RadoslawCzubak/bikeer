@@ -64,6 +64,12 @@ to save detailed information.
                  └─────┘                                      
 ```
 
+The Model-View-Intent (MVI) pattern is a design pattern used in software development, particularly in user interface architecture. It aims to create a clear separation between different components of an application:
+
+Model: Represents the state of the application. It encapsulates the data and business logic of the application.
+View: Represents the user interface components. It is responsible for rendering the user interface based on the current state of the model.
+Intent: Represents the user's actions or intents to interact with the application. It captures user inputs such as clicks, swipes, etc., and translates them into actions that affect the model.
+In the MVI pattern, the flow of data is unidirectional: user actions trigger intents, which in turn update the model. The updated model then triggers updates in the view, reflecting the changes to the user interface. This pattern promotes a reactive and predictable architecture, making it easier to reason about the behavior of the application.
 
 ### 🖼️ Native UI in KMM App
 
