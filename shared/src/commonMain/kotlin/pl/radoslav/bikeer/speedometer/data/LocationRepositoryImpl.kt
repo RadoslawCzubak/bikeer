@@ -10,7 +10,7 @@ class LocationRepositoryImpl(
     private val locationManager: LocationManager
 ) : LocationRepository {
     override fun observeLocation(): Flow<GpsLocation> {
-        return flowOf(GpsLocation(0.0, 0.0, 0.0, 0.0))
+        return locationManager.observeLocation()
     }
 
     override fun observeSpeed(): Flow<Float> = locationManager.getSpeed()

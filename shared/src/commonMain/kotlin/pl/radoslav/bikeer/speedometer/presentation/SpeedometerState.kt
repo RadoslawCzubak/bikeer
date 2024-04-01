@@ -1,6 +1,21 @@
 package pl.radoslav.bikeer.speedometer.presentation
 
-data class SpeedometerState(
-    val lat: Double = 1.0,
-    val lon: Double = 1.0,
-)
+
+sealed class SpeedometerState {
+    data class SpeedometerAvailable(
+        val latitude: Double = 1.0,
+        val longitude: Double = 1.0,
+        val altitude: Double = 1.0,
+        val speed: Float = 0f,
+    ): SpeedometerState()
+
+    data object SpeedometerNotAvailable : SpeedometerState()
+
+    data class SpeedometerError(
+        val message: String = ""
+    ) : SpeedometerState()
+
+    data class SpeedometerPermissionNotGranted(
+        val message: String = ""
+    ) : SpeedometerState()
+}
