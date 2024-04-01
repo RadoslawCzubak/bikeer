@@ -1,5 +1,8 @@
 package pl.radoslav.bikeer.android.speedometer.presentation
 
+import android.Manifest
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,21 +15,30 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import pl.radoslav.bikeer.android.R
 import pl.radoslav.bikeer.android.core.presentation.speedometer.Gauge
+import pl.radoslav.bikeer.speedometer.presentation.SpeedometerEvent
 import pl.radoslav.bikeer.speedometer.presentation.SpeedometerState
 import pl.radoslav.bikeer.speedometer.presentation.SpeedometerViewModel
 
@@ -34,13 +46,62 @@ import pl.radoslav.bikeer.speedometer.presentation.SpeedometerViewModel
 fun SpeedometerScreen(
     viewModel: SpeedometerViewModel
 ) {
+    val locationPermissions = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+
+    val permissionLauncher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            if (permissions.values.all { it }) {
+                viewModel.onEvent(SpeedometerEvent.ObserveLocation)
+            } else {
+                viewModel.onEvent(SpeedometerEvent.OnNoLocationPermission)
+            }
+        }
+
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(key1 = Unit) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_START -> {
+                    permissionLauncher.launch(locationPermissions)
+                }
+
+                else -> Unit
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { }
+    }
     val state by viewModel.state.collectAsState()
-    SpeedometerScreenContent(state)
+    when (state) {
+        is SpeedometerState.SpeedometerAvailable -> {
+            SpeedometerScreenContent(state as SpeedometerState.SpeedometerAvailable)
+        }
+
+        is SpeedometerState.SpeedometerNotAvailable -> {
+            Text(text = "Speedometer not available")
+        }
+
+        is SpeedometerState.SpeedometerError -> {
+            Text(text = "Error: ${(state as SpeedometerState.SpeedometerError).message}")
+        }
+
+        is SpeedometerState.SpeedometerPermissionNotGranted -> {
+            Column {
+                Text(text = "Permission not granted: ${(state as SpeedometerState.SpeedometerPermissionNotGranted).message}")
+                Button(onClick = { permissionLauncher.launch(locationPermissions) }) {
+                    Text(text = "Retry")
+                }
+            }
+        }
+    }
 }
 
 @Composable
 fun SpeedometerScreenContent(
-    state: SpeedometerState,
+    state: SpeedometerState.SpeedometerAvailable,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

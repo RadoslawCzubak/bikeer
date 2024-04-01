@@ -15,10 +15,6 @@ sealed class SpeedometerState {
         val message: String = ""
     ) : SpeedometerState()
 
-    data class SpeedometerLoading(
-        val message: String = ""
-    ) : SpeedometerState()
-
     data class SpeedometerPermissionNotGranted(
         val message: String = ""
     ) : SpeedometerState()
