@@ -77,7 +77,14 @@ fun SpeedometerScreen(
     val state by viewModel.state.collectAsState()
     when (state) {
         is SpeedometerState.SpeedometerAvailable -> {
-            SpeedometerScreenContent(state as SpeedometerState.SpeedometerAvailable)
+            val stateSpeedometerAvailable: SpeedometerState.SpeedometerAvailable =
+                state as SpeedometerState.SpeedometerAvailable
+            SpeedometerScreenContent(
+                stateSpeedometerAvailable.latitude,
+                longitude = stateSpeedometerAvailable.longitude,
+                altitude = stateSpeedometerAvailable.altitude,
+                speed = stateSpeedometerAvailable.speed
+            )
         }
 
         is SpeedometerState.SpeedometerNotAvailable -> {
@@ -96,12 +103,20 @@ fun SpeedometerScreen(
                 }
             }
         }
+
+        SpeedometerState.Initialized -> SpeedometerScreenContent(
+            waitingForFirstUpdate = true
+        )
     }
 }
 
 @Composable
 fun SpeedometerScreenContent(
-    state: SpeedometerState.SpeedometerAvailable,
+    latitude: Double = 0.0,
+    longitude: Double = 0.0,
+    altitude: Double = 0.0,
+    speed: Float = 0f,
+    waitingForFirstUpdate: Boolean = false
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -113,7 +128,7 @@ fun SpeedometerScreenContent(
                 .fillMaxWidth()
                 .aspectRatio(1f)
                 .padding(48.dp),
-            value = state.speed,
+            value = speed,
             minValue = 0f,
             maxValue = 50f,
             baseColor = Color(0xFF1C1C1E),
@@ -124,20 +139,36 @@ fun SpeedometerScreenContent(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Map(
-                modifier = Modifier
-                    .weight(1f)
-                    .aspectRatio(1f)
-            )
-            Spacer(modifier = Modifier.size(8.dp))
-            NavigationInfo(
-                latitude = state.latitude,
-                longitude = state.longitude,
-                altitude = state.altitude,
-                modifier = Modifier
-                    .weight(1f)
-                    .aspectRatio(1f)
-            )
+            if (waitingForFirstUpdate) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color.Gray)
+                        .weight(1f)
+                        .aspectRatio(1f)
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .aspectRatio(1f)
+                )
+            } else {
+                Map(
+                    modifier = Modifier
+                        .weight(1f)
+                        .aspectRatio(1f)
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                NavigationInfo(
+                    latitude = latitude,
+                    longitude = longitude,
+                    altitude = altitude,
+                    modifier = Modifier
+                        .weight(1f)
+                        .aspectRatio(1f)
+                )
+            }
         }
     }
 }
@@ -211,8 +242,10 @@ fun NavigationItem(
 @Composable
 fun SpeedometerScreenContentPreview() {
     SpeedometerScreenContent(
-        SpeedometerState.SpeedometerAvailable(
-            speed = 18f,
-        )
+        latitude = 0.0,
+        longitude = 0.0,
+        altitude = 0.0,
+        speed = 0f,
+        waitingForFirstUpdate = true
     )
 }

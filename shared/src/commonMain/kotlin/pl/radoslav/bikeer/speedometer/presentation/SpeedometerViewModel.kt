@@ -16,7 +16,7 @@ open class SpeedometerViewModel(
     private val locationRepository: LocationRepository
 ) : KMMViewModel() {
     private val _state: MutableStateFlow<SpeedometerState> =
-        MutableStateFlow(viewModelScope, SpeedometerState.SpeedometerAvailable())
+        MutableStateFlow(viewModelScope, SpeedometerState.Initialized)
 
     @NativeCoroutinesState
     val state = _state

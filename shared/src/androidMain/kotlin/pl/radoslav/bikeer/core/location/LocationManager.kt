@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.location.Location
 import android.location.LocationListener
 import android.os.Looper
+import android.util.Log
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -59,13 +60,14 @@ actual class LocationManager(
 
     @SuppressLint("MissingPermission")
     actual fun observeLocation(): Flow<GpsLocation> = callbackFlow {
-        val locationRequest = LocationRequest.Builder(100L)
+        val locationRequest = LocationRequest.Builder(10L)
             .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
             .build()
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 locationResult.lastLocation?.let { location ->
+                    Log.d("SpeedRRR", location.speed.toDouble().toString())
                     trySend(
                         GpsLocation(
                             latitude = location.latitude,

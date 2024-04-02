@@ -2,12 +2,14 @@ package pl.radoslav.bikeer.speedometer.presentation
 
 
 sealed class SpeedometerState {
+    data object Initialized : SpeedometerState()
+
     data class SpeedometerAvailable(
-        val latitude: Double = 1.0,
-        val longitude: Double = 1.0,
-        val altitude: Double = 1.0,
+        val latitude: Double = 0.0,
+        val longitude: Double = 0.0,
+        val altitude: Double = 0.0,
         val speed: Float = 0f,
-    ): SpeedometerState()
+    ) : SpeedometerState()
 
     data object SpeedometerNotAvailable : SpeedometerState()
 
