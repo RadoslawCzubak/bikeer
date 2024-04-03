@@ -46,8 +46,6 @@ open class SpeedometerViewModel(
                     SpeedometerState.SpeedometerPermissionNotGranted()
                 }
             }
-
-            else -> Unit
         }
     }
 }
