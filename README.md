@@ -50,7 +50,7 @@ to save detailed information.
 - Koin Dependency Injection Framework
 - MVI pattern
 
-### MVI Architecture 
+### 📂 MVI Architecture 
 ```
                  ┌──────┐                                     
   ┌──────────────►Intent├───────────────┐                     
