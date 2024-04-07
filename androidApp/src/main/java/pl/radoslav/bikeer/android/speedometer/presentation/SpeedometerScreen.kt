@@ -47,8 +47,7 @@ fun SpeedometerScreen(
     viewModel: SpeedometerViewModel
 ) {
     val locationPermissions = arrayOf(
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION
+        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
     val permissionLauncher =
@@ -186,10 +185,7 @@ fun Map(
 
 @Composable
 fun NavigationInfo(
-    latitude: Double,
-    longitude: Double,
-    altitude: Double,
-    modifier: Modifier = Modifier
+    latitude: Double, longitude: Double, altitude: Double, modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -216,9 +212,7 @@ fun NavigationInfo(
 
 @Composable
 fun NavigationItem(
-    iconId: Int,
-    stringValue: String,
-    modifier: Modifier = Modifier
+    iconId: Int, stringValue: String, modifier: Modifier = Modifier
 ) {
     Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = modifier) {
         Icon(
@@ -228,8 +222,7 @@ fun NavigationItem(
             modifier = Modifier.size(24.dp)
         )
         Text(
-            text = stringValue,
-            style = TextStyle(
+            text = stringValue, style = TextStyle(
                 color = Color.White,
             )
         )
@@ -242,10 +235,6 @@ fun NavigationItem(
 @Composable
 fun SpeedometerScreenContentPreview() {
     SpeedometerScreenContent(
-        latitude = 0.0,
-        longitude = 0.0,
-        altitude = 0.0,
-        speed = 0f,
-        waitingForFirstUpdate = true
+        latitude = 0.0, longitude = 0.0, altitude = 0.0, speed = 0f, waitingForFirstUpdate = true
     )
 }
